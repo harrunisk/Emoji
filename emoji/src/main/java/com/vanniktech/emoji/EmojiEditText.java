@@ -136,6 +136,10 @@ public class EmojiEditText extends AppCompatEditText implements EmojiEditable {
     }
 
     @Override public void onFocusChange(final View view, final boolean hasFocus) {
+      if (onFocusChangeListener != null) {
+        onFocusChangeListener.onFocusChange(view, hasFocus);
+      }
+
       if (hasFocus) {
         emojiPopup.start();
         emojiPopup.show();
@@ -143,9 +147,6 @@ public class EmojiEditText extends AppCompatEditText implements EmojiEditable {
         emojiPopup.dismiss();
       }
 
-      if (onFocusChangeListener != null) {
-        onFocusChangeListener.onFocusChange(view, hasFocus);
-      }
     }
   }
 }
